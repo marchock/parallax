@@ -75,8 +75,6 @@
 
         var images = document.querySelectorAll('.parallax'),
             ary = [];
-
-
             console.log(images);
 
             for(i=0; i < images.length; i+=1) {
@@ -85,10 +83,6 @@
 
             console.log(ary);
     }
-
-
-
-
 
 
         function ImgObj(img) {
@@ -102,13 +96,8 @@
                 console.log(window.scrollY, y);
 
                 if (img.offsetTop < window.scrollY) {
-                    if (window.scrollY > y) {
-                        yy += 1;
-                    } else {
-                        yy -= 1;
-                    }
-                    y = window.scrollY;
-                    img.style.transform = 'translateY(' + yy + 'px)';
+                    y = Math.abs(img.offsetTop - window.scrollY) / 5;
+                    img.style.transform = 'translateY(' + y + 'px)';
                 }
             }
 
