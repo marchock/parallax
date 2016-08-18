@@ -85,6 +85,7 @@
     }
 
 
+
         function ImgObj(img) {
 
             console.log('ImgObj', img.offsetTop);
@@ -93,12 +94,19 @@
                 yy = 0;
 
             this.scroll = function () {
-                console.log(window.scrollY, y);
-
-                if (img.offsetTop < window.scrollY) {
-                    y = Math.abs(img.offsetTop - window.scrollY) / 5;
+                if (img.offsetTop === 0) {
+                    y = Math.abs(img.offsetTop - window.scrollY) / 4;
                     img.style.transform = 'translateY(' + y + 'px)';
+
+                } else {
+                    if ((img.offsetTop - window.outerHeight) < window.scrollY) {
+
+                        y = (window.scrollY - img.offsetTop) / 4 ;
+                        img.style.transform = 'translateY(' + y + 'px)';
+                    }
                 }
+
+
             }
 
             window.addEventListener("scroll", this.scroll);
